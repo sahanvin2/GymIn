@@ -73,16 +73,15 @@ class ShoppingCart extends Component
             foreach ($this->cartItems as $cartItem) {
                 Order::create([
                     'user_id' => Auth::id(),
-                    'package_id' => $cartItem->package_id,
+                    'product_id' => $cartItem->product_id,
                     'total_amount' => $cartItem->total_price,
                     'status' => 'pending',
                     'payment_status' => 'pending',
                     'order_details' => [
-                        'package_name' => $cartItem->package->name,
+                        'product_name' => $cartItem->product->name,
                         'quantity' => $cartItem->quantity,
                         'price_per_item' => $cartItem->price_at_time
-                    ],
-                    'expires_at' => now()->addMonths($cartItem->package->duration_months)
+                    ]
                 ]);
             }
 
