@@ -1,12 +1,6 @@
 <div>
     <!-- Hero Section -->
-                                        @if($item->product->main_image_url)
-                                            <img src="{{ $item->product->main_image_url }}" alt="{{ $item->product->name }}" class="w-24 h-24 object-cover rounded-xl shadow-md">
-                                        @else
-                                            <div class="w-24 h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center">
-                                                <span class="text-white font-bold text-lg">{{ substr($item->product->name, 0, 2) }}</span>
-                                            </div>
-                                        @endifv class="bg-gradient-to-r from-gray-900 via-red-900 to-gray-900 py-16">
+    <div class="bg-gradient-to-r from-gray-900 via-red-900 to-gray-900 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Shopping Cart</h1>
@@ -308,5 +302,4 @@
             </div>
         </div>
     @endif
-    </div>
 </div>
