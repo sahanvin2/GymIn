@@ -12,23 +12,22 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-	/**
-	 * Register a new user
-	 */
-	public function register(\Illuminate\Http\Request $request): \Illuminate\Http\JsonResponse
-	{
-		try {
-			$request->validate([
-				'name' => 'required|string|max:255',
-				'email' => 'required|string|email|max:255|unique:users',
-				'password' => 'required|string|min:8|confirmed',
-			]);
+    /**
+     * Register a new user
+     */
+    public function register(\Illuminate\Http\Request $request): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:8|confirmed',
+            ]);
 
-			$user = \App\Models\User::create([
-				'name' => $request->name,
-				'email' => $request->email,
-				'password' => \Illuminate\Support\Facades\Hash::make($request->password),
-				'email_verified_at' => now(),
+            $user = \App\Models\User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => \Illuminate\Support\Facades\Hash::make($request->password),
 			]);
 
 			$token = $user->createToken('auth_token')->plainTextToken;
