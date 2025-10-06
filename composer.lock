@@ -2451,7 +2451,7 @@
             "time": "2024-12-10T15:32:06+00:00"
         },
         {
-            "name": "mongodb/laravel-mongodb",
+            "name": "__removed__/laravel-mongodb",
             "version": "5.5.0",
             "source": {
                 "type": "git",
@@ -2560,7 +2560,7 @@
             "time": "2025-08-12T05:06:10+00:00"
         },
         {
-            "name": "mongodb/mongodb",
+            "name": "__removed__/mongodb",
             "version": "2.1.1",
             "source": {
                 "type": "git",

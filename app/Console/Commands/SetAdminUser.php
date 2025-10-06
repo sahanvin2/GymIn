@@ -20,7 +20,7 @@ class SetAdminUser extends Command
      *
      * @var string
      */
-    protected $description = 'Set a user as admin or create admin user';
+    protected $description = 'Set a user as admin or create the default admin user';
 
     /**
      * Execute the console command.

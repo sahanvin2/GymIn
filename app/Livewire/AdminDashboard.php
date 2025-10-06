@@ -748,7 +748,7 @@ class AdminDashboard extends Component
         
         $packages = $packagesQuery->latest()->paginate(10, ['*'], 'packages');
 
-        $ordersQuery = Order::with(['user', 'package']);
+    $ordersQuery = Order::with(['user', 'product']);
         
         if ($this->searchOrders) {
             $ordersQuery->whereHas('user', function($q) {
