@@ -35,6 +35,10 @@ Route::prefix('v1')->group(function () {
     Route::get('/featured-products', [ProductApiController::class, 'featured']);
     Route::get('/latest-products', [ProductApiController::class, 'latest']);
     Route::get('/sale-products', [ProductApiController::class, 'onSale']);
+
+    // Package endpoints (versioned)
+    Route::get('/packages', [PackageApiController::class, 'index']);
+    Route::get('/packages/{package}', [PackageApiController::class, 'show']);
 });
 
 // Legacy package routes
@@ -49,6 +53,13 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Package management (admin only)
     Route::middleware('can:admin')->group(function () {
+        Route::post('/packages', [PackageApiController::class, 'store']);
+        Route::put('/packages/{package}', [PackageApiController::class, 'update']);
+        Route::delete('/packages/{package}', [PackageApiController::class, 'destroy']);
+    });
+
+    // Versioned package management (admin only)
+    Route::prefix('v1')->middleware('can:admin')->group(function () {
         Route::post('/packages', [PackageApiController::class, 'store']);
         Route::put('/packages/{package}', [PackageApiController::class, 'update']);
         Route::delete('/packages/{package}', [PackageApiController::class, 'destroy']);
