@@ -146,11 +146,7 @@ class AuthController extends Controller
     public function refresh(Request $request): JsonResponse
     {
         $user = $request->user();
-        
-        // Delete current token
         $request->user()->currentAccessToken()->delete();
-        
-        // Create new token
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
@@ -170,7 +166,6 @@ class AuthController extends Controller
     {
         try {
             $user = $request->user();
-            
             $request->validate([
                 'name' => 'sometimes|required|string|max:255',
                 'email' => 'sometimes|required|string|email|max:255|unique:users,email,' . $user->id,
@@ -178,7 +173,6 @@ class AuthController extends Controller
                 'password' => 'sometimes|string|min:8|confirmed',
             ]);
 
-            // Check current password if password is being updated
             if ($request->has('password')) {
                 if (!Hash::check($request->current_password, $user->password)) {
                     return response()->json([
@@ -188,17 +182,10 @@ class AuthController extends Controller
                 }
             }
 
-            // Update user data
             $updateData = [];
-            if ($request->has('name')) {
-                $updateData['name'] = $request->name;
-            }
-            if ($request->has('email')) {
-                $updateData['email'] = $request->email;
-            }
-            if ($request->has('password')) {
-                $updateData['password'] = Hash::make($request->password);
-            }
+            if ($request->has('name')) $updateData['name'] = $request->name;
+            if ($request->has('email')) $updateData['email'] = $request->email;
+            if ($request->has('password')) $updateData['password'] = Hash::make($request->password);
 
             $user->update($updateData);
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\PackageApiController;
+use App\Http\Controllers\Api\PackageApiController;
 use App\Http\Controllers\Api\ProductApiController;
 use App\Http\Controllers\Api\AuthController;
 
